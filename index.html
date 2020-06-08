@@ -1,0 +1,83 @@
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+  <script src="assets/js/jquery-3.5.0.js"></script>
+  <script>
+    var data = [
+      {
+        slist: ['#fd8701', '#f8a900', '#f36d00'],
+        title: 'item 1',
+        ptext: 'Cake muffin donut chocolate cake jelly sesame snaps wafer tart pie sweet roll muffin chupa chups.',
+        img: 'assets/img/idea.png',
+      },
+      {
+        slist: ['#de48a1', '#fc60ab', '#ba2992'],
+        title: 'item 2',
+        ptext: 'Cake cookie lemon drops muffin sugar plum. Liquorice pudding sugar plum topping macaroon pie chocolate.',
+        img: 'assets/img/pc.png',
+      },
+      {
+        slist: ['#6959be', '#8879e1', '#4e3caa'],
+        title: 'item 3',
+        ptext: 'Cake muffin donut chocolate cake jelly sesame snaps wafer tart pie sweet roll muffin chupa chups.',
+        img: 'assets/img/mobile.png',
+      },
+      {
+        slist: ['#52b9c3', '#a1d4a2', '#22b6e5'],
+        title: 'item 4',
+        ptext: 'Cake cookie lemon drops muffin sugar plum. Liquorice pudding sugar plum topping macaroon pie chocolate.',
+        img: 'assets/img/finance.png',
+      },
+      {
+        slist: ['#acd730', '#deeb19', '#7cc43d'],
+        title: 'item 5',
+        ptext: 'Cake muffin donut chocolate cake jelly sesame snaps wafer tart pie sweet roll muffin chupa chups.',
+        img: 'assets/img/target.png',
+      }
+    ];
+    var n = data.length;
+    $(document).ready(function () {
+      for (var i = 0; i < n; i++) {
+        var s = [`--idx: ${i}`], m = data[i].slist.length;
+        for (var j = 0; j < m; j++) {
+          s.push(`--c${j}: ${data[i].slist[j]}`);
+        }
+        var articleData = data[i];
+        var article = `<article id='_article_${i}'class="article"style='${s.join(';')}' onClick='openModal(${JSON.stringify(articleData)})'>
+          <h3 id='h3_${i}'>${data[i].title}</h3>
+          <p id='p_${i}'>${data[i].ptext.substring(0, 100)}</p>   
+          <img class="art_img"src='${data[i].img}' alt="img"></img>         
+        </article>   
+       `;
+        $("body").append(article);
+      }
+      var modal = `
+        <div id="myModal" class="modal">
+        <div class="modal-content">
+        <span class="close" onClick='closeModal()'>&times;</span>
+        <h2 class="modal-title"></h2>
+        <h4 class="modal-data"></h4>
+      </div>
+      </div>   
+        `;
+      $("body").append(modal);
+    });
+    openModal = (data) => {
+      var modalTitle = data.title;
+      var modalData = data.ptext;
+      $(".modal-title").text(modalTitle)
+      $(".modal-data").text(modalData)
+      $("#myModal").show()
+    }
+    closeModal = () => {
+      $("#myModal").hide()
+    }
+  </script>
+
+<body>
+
+</body>
+</head>
+
+</html>
